@@ -1,7 +1,7 @@
 #include<stdio.h>
-void Sorter(int priority[],int n,int processes[],int burst_time[],int arrival_time[])
+void Sorter(int n,int processes[],int burst_time[],int arrival_time[])
 {
-    for (int i = 0; i < n; i++)//sorting in priority
+    for (int i = 0; i < n; i++)
     {
         int first=i;
         for (int j = i+1; j < n; j++)
@@ -11,11 +11,8 @@ void Sorter(int priority[],int n,int processes[],int burst_time[],int arrival_ti
                 first=j;
             }
         }
-        int temp=priority[i];
-        priority[i]=priority[first];
-        priority[first]=temp;
         
-        temp=processes[i];
+        int temp=processes[i];
         processes[i]=processes[first];
         processes[first]=temp;
 
@@ -28,12 +25,12 @@ void Sorter(int priority[],int n,int processes[],int burst_time[],int arrival_ti
         arrival_time[first]=temp;
     }
 }
-void sjf_pre_emt(int processes[],int n,int burst_time[],int quantum,int arrival_time[],int priority[])
+void sjf_pre_emt(int processes[],int n,int burst_time[],int quantum,int arrival_time[])
 {
     int remaining_time[n],WT[n],TAT[n],total_WT=0,total_TAT=0,time=0,RT[n],flag[n],avg_RT=0;
     int completion_time[n];
     int all_processes_completed[n],idle=0;
-    Sorter(priority,n,processes,burst_time,arrival_time);
+    Sorter(n,processes,burst_time,arrival_time);
     for (int i = 0; i < n; i++)//setting remaining time
     {
         remaining_time[i]=burst_time[i];
@@ -88,10 +85,10 @@ void sjf_pre_emt(int processes[],int n,int burst_time[],int quantum,int arrival_
         total_WT+=WT[i];
     }
     printf("\nSjf with preemption algorithm\n");
-    printf("Processes\tAT\tBT\tPriority\tWT\tTAT\tCT\tRT\n");
+    printf("Processes\tAT\tBT\tWT\tTAT\tCT\tRT\n");
     for (int i = 0; i < n; i++)
     {
-        printf("%d\t\t%d\t%d\t%d\t\t%d\t%d\t%d\t%d\n",processes[i],arrival_time[i],burst_time[i],priority[i],WT[i],TAT[i],completion_time[i],RT[i]);
+        printf("%d\t\t%d\t%d\t%d\t%d\t%d\t%d\n",processes[i],arrival_time[i],burst_time[i],WT[i],TAT[i],completion_time[i],RT[i]);
     }
     printf("AVG waiting time: %2f\n",(float)total_WT/n);
     printf("AVG turnaround time: %2f\n",(float)total_TAT/n);
@@ -112,9 +109,33 @@ void main()
         scanf("%d",&arrival_time[i]);
         printf("Enter the Burst time for processes %d:",i+1);
         scanf("%d",&burst_time[i]);
-        printf("Enter the priority for process %d:",i+1);
-        scanf("%d",&prioritylist[i]);
         processes[i]=i+1;
     }
-    sjf_pre_emt(processes,n,burst_time,quantum,arrival_time,prioritylist);
+    printf("Enter the time quantum: ");
+    scanf("%d",&quantum);
+    sjf_pre_emt(processes,n,burst_time,quantum,arrival_time);
 }
+/*
+output
+Enter the number of processes: 4
+Enter the arrival time for process 1:2
+Enter the Burst time for processes 1:1
+Enter the arrival time for process 2:1
+Enter the Burst time for processes 2:5
+Enter the arrival time for process 3:4
+Enter the Burst time for processes 3:1
+Enter the arrival time for process 4:0
+Enter the Burst time for processes 4:6
+Enter the time quantum: 2
+
+Sjf with preemption algorithm
+Processes       AT      BT      WT      TAT     CT      RT
+1               2       1       0       1       3       0
+3               4       1       3       4       8       3
+2               1       5       7       12      13      2
+4               0       6       6       12      12      0
+AVG waiting time: 4.000000
+AVG turnaround time: 7.250000
+AVG Response time: 1.250000
+Total Idle time: 0
+*/
