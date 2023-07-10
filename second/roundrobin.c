@@ -1,5 +1,5 @@
 #include<stdio.h>
-void Sorter(int priority[],int n,int processes[],int burst_time[],int arrival_time[],int key)
+void Sorter(int priority[],int n,int processes[],int burst_time[],int arrival_time[])
 {
     for (int i = 0; i < n; i++)//sorting in priority
     {
@@ -34,7 +34,7 @@ void roundRobin(int processes[],int n,int burst_time[],int quantum,int arrival_t
     int remaining_time[n],WT[n],TAT[n],total_WT=0,total_TAT=0,time=0,RT[n],flag[n],avg_RT=0;
     int completion_time[n];
     int all_processes_completed[n],idle=0;
-    Sorter(priority,n,processes,burst_time,arrival_time,3);
+    Sorter(priority,n,processes,burst_time,arrival_time);
     for (int i = 0; i < n; i++)//setting remaining time
     {
         remaining_time[i]=burst_time[i];

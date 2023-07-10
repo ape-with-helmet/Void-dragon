@@ -266,3 +266,64 @@ void main()
     priority(processes,n,burst_time,arrival_time,prioritylist);
     roundRobin(processes,n,burst_time,quantum,arrival_time,prioritylist);
 }
+//output
+/*
+Enter the number of processes: 4
+Enter the arrival time for process 1:2
+Enter the Burst time for processes 1:1
+Enter the priority for process 1:1
+Enter the arrival time for process 2:1
+Enter the Burst time for processes 2:5
+Enter the priority for process 2:1
+Enter the arrival time for process 3:4
+Enter the Burst time for processes 3:1
+Enter the priority for process 3:1
+Enter the arrival time for process 4:0
+Enter the Burst time for processes 4:6
+Enter the priority for process 4:1
+Enter the time quantum for round robin: 2
+FCFS agorithm
+Processes       AT      BT      Priority        WT      TAT     CT      RT
+4               0       6       1               0       6       6       0
+2               1       5       1               5       10      11      5
+1               2       1       1               9       10      12      9
+3               4       1       1               8       9       13      8
+AVG waiting time: 5.500000
+AVG turnaround time: 8.750000
+Total Idle time: 0
+
+SJF agorithm
+Processes       AT      BT      Priority        WT      TAT     CT      RT
+1               2       1       1               0       1       3       0
+3               4       1       1               0       1       5       0
+2               1       5       1               4       9       10      4
+4               0       6       1               10      16      16      10
+AVG waiting time: 3.500000
+AVG turnaround time: 6.750000
+Total Idle time: 3
+
+
+Priority algorithm
+Processes       AT      BT      Priority        WT      TAT     CT      RT
+1               2       1       1               4       5       7       4
+3               4       1       1               3       4       8       3
+2               1       5       1               7       12      13      7
+4               0       6       1               0       6       6       0
+AVG waiting time: 3.500000
+AVG turnaround time: 6.750000
+AVG Response time: 3.500000
+Total Idle time: 0
+
+
+ROund RObin algorithm
+Processes       AT      BT      Priority        WT      TAT     CT      RT
+1               2       1       1               0       1       3       0
+3               4       1       1               3       4       8       3
+2               1       5       1               7       12      13      2
+4               0       6       1               6       12      12      0
+AVG waiting time: 4.000000
+AVG turnaround time: 7.250000
+AVG Response time: 1.250000
+Total Idle time: 0
+
+*/
