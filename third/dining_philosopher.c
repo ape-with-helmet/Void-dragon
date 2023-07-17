@@ -32,4 +32,22 @@ void main()
             exit(1);
         }
     }
+    for (int i = 1; i <= NUM_PHILOSOPHERS; i++)
+    {
+        status_message=pthread_join(philosopher[i],&msg);
+        if (status_message!=0)
+        {
+            printf("\nThread join failed\n");
+            exit(1);
+        }
+    }   
+    for (int i = 1; i <= NUM_CHOPSTICKS; i++)
+    {
+        status_message=pthread_mutex_destroy(&chopstick[i]);
+        if (status_message!=0)
+        {
+            printf("\nMutex Destroyed\n");
+            exit(1);
+        }
+    }
 }
