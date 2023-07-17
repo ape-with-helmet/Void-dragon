@@ -22,7 +22,7 @@ void dine(int n)
 }
 void main()
 {
-    int i,status_message;
+    int status_message;
     void *msg;
     for (int i = 1; i <= NUM_CHOPSTICKS; i++)
     {
@@ -35,7 +35,7 @@ void main()
     }
     for (int i = 1; i <= NUM_PHILOSOPHERS; i++)
     {
-        status_message=pthread_create(&philosopher[i],NULL,(void *)dine,(int *)i);
+        status_message=pthread_create(&philosopher[i],NULL,(void *)dine,(int*)i);
         if (status_message!=0)
         {
             printf("\nThread creation error\n");
