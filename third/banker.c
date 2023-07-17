@@ -2,7 +2,7 @@
 //#include<conio.h>
 void main()
 {
-    int k=0,a=0,b=0,instance[5],availability[5],allocated[10][5],need[10][5],MAX[10][5],process,P[10],no_of_resources,cnt=0,i,j;
+    int k=0,op[10],a=0,b=0,instance[5],availability[5],allocated[10][5],need[10][5],MAX[10][5],process,P[10],no_of_resources,cnt=0,i,j;
     printf("\nEnter the no of resources: ");
     scanf("%d",&no_of_resources);
     printf("\nEnter the max instances of each resources\n");
@@ -36,4 +36,51 @@ void main()
         availability[i]=instance[i]-availability[i];
     }
     printf("\n");
+    for (int i = 0; i < process; i++)
+    {
+        printf("P[%d] ",i);
+        for (int j = 0; j < no_of_resources; j++)
+        {
+            scanf("%d",&MAX[i][j]);
+        }
+    }
+    printf("\n");
+    A: a=-1;
+    for (int i = 0; i < process; i++)
+    {
+        cnt=0;
+        b=P[i];
+        for (int j = 0; j < no_of_resources; j++)
+        {
+            need[b][j]=MAX[b][j]-allocated[b][j];
+            if (need[b][j]<=availability)
+            {
+                cnt++;
+            }
+        }
+        if (cnt==no_of_resources)
+        {
+            op[k++]=P[i];
+            for (int j = 0; j < no_of_resources; j++)
+            {
+                availability[j]+=allocated[b][j];
+            }
+        }
+        else
+        {
+            P[++a]=P[i];
+        }
+    }
+    if(a!=-1)
+    {
+        process=a+1;
+        goto A;
+    }
+    printf("\t<");
+    for (int i = 0; i < k; i++)
+    {
+        printf("P[%d] ",op[i]);
+        printf(">");
+    }
+    getchar();
 }
