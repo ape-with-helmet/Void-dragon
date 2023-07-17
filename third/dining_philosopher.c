@@ -1,15 +1,25 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<unistd.h>
 #include<pthread.h>
 #include<semaphore.h>
 #define NUM_PHILOSOPHERS 5
 #define NUM_CHOPSTICKS 5
-
-void dine(int n);
 pthread_t
 philosopher[NUM_PHILOSOPHERS];
 pthread_mutex_t
 chopstick[NUM_CHOPSTICKS];
+void dine(int n)
+{
+    printf("\nPhilosopher %d is thinking",n);
+    pthread_mutex_lock(&chopstick[n]);
+    pthread_mutex_lock(&chopstick[(n+1)%NUM_CHOPSTICKS]);
+    printf("\nPhilosopher %d is eating\n",n);
+    sleep(3);
+    pthread_mutex_unlock(&chopstick[n]);
+    pthread_mutex_unlock(&chopstick[(n+1)%NUM_CHOPSTICKS]);
+    printf("\nPhilosopher %d Finished eating\n",n);
+}
 void main()
 {
     int i,status_message;
@@ -50,4 +60,32 @@ void main()
             exit(1);
         }
     }
+    
+    printf("CHECK");
 }
+/*
+Philosopher 2 is thinking
+Philosopher 2 is eating
+
+Philosopher 4 is thinking
+Philosopher 4 is eating
+
+Philosopher 5 is thinking
+Philosopher 5 is eating
+
+Philosopher 1 is thinking
+Philosopher 3 is thinking
+Philosopher 2 Finished eating
+
+Philosopher 5 Finished eating
+
+Philosopher 4 Finished eating
+
+Philosopher 3 is eating
+
+Philosopher 1 is eating
+
+Philosopher 3 Finished eating
+
+Philosopher 1 Finished eating
+*/
