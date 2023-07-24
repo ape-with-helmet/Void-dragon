@@ -30,6 +30,6 @@ int main()
         }
         printf("\n");
     }
-    printf("Page Faiult is %d",fault);
+    printf("Page Fault is %d\n",fault);
     return 0;
 }
