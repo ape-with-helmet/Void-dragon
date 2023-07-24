@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 //#include<conio.h>
 void main()
 {
@@ -15,10 +16,7 @@ void main()
     printf("\nEnter the no of processes: ");
     scanf("%d",&process);
     printf("Enter the allocation matrix\n");
-    for (int i = 0; i < no_of_resources; i++)
-    {
-        printf("%c\n",(i+97));
-    }
+    printf("\ta b c\n");
     for (int i = 0; i < process; i++)
     {
         P[i]=i;
@@ -38,6 +36,8 @@ void main()
     printf("\n");
     for (int i = 0; i < process; i++)
     {
+        cnt=0;
+        b=P[i];
         printf("P[%d] ",i);
         for (int j = 0; j < no_of_resources; j++)
         {
@@ -53,7 +53,7 @@ void main()
         for (int j = 0; j < no_of_resources; j++)
         {
             need[b][j]=MAX[b][j]-allocated[b][j];
-            if (need[b][j]<=availability)
+            if (need[b][j]<=availability[j])
             {
                 cnt++;
             }
