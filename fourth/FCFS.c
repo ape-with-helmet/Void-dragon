@@ -12,10 +12,10 @@ int main()
     for(i=0;i<no;i++)
     frame[i]=-1;
     j=0;
-    printf("\tinput\tpage frames\n");
+    printf("\tinput\tpage\tframes\n");
     for(i=1;i<=n;i++)
     {
-        printf("%d\t\t",a[i]);
+        printf("%d\t",a[i]);
         avail=0;
         for(k=0;k<no;k++)
         if(frame[k]==a[i])
