@@ -44,11 +44,11 @@ void main()
         for (i = index; i < n; i++)
         {
             printf("%d ",rq[i]);
-            THM=THM+abs(rq[i]-init);
+            THM+=abs(rq[i]-init);
             init=rq[i];
         }
-        THM=THM+abs(size-rq[i-1]-1);
-        init=size-1;
+        THM=THM+abs(size-rq[n-1]);
+        init=size;
         for (i = index-1; i >= 0; i--)
         {
             printf("%d ",rq[i]);
@@ -59,13 +59,13 @@ void main()
     else
     {
         printf("Sequence of request access: \n");
-        for (i = index; i >= 0; i--)
+        for (i = index-1; i >= 0; i--)
         {
            printf("%d ",rq[i]);
            THM=THM+abs(rq[i]-init);
            init=rq[i]; 
         }
-        THM=THM+abs(rq[i+1]-0);
+        THM=THM+abs(rq[0]-0);
         init=0;
         for (i = index; i < n; i++)
         {
@@ -76,3 +76,10 @@ void main()
     }
     printf("\nTotal head movement is %d\n\n",THM);
 }
+// Enter no of requests: 7
+// Enter request sequence: 82 170 43 140 24 16 190
+// Enter initial head position: 50
+// Enter disk size: 200
+// Enter the head movement direction for high 1 and for low 0: 1
+// Sequence of request access: 82 140 170 190 43 24 16 
+// Total head movement is 334
