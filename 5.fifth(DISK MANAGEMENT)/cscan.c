@@ -41,45 +41,41 @@ int main()
     }
     if(move==1)
     {
-       printf("Sequence of request access:\n");
-       for ( i = index; i < n; i++)
-       {
-           printf("%d ",rq[i]);
-           totalheadmovement=totalheadmovement+abs(rq[i]-initial);
-           initial=rq[i];
-       }
-       totalheadmovement=totalheadmovement+abs(size-rq[i-1]-1);
-
-       totalheadmovement=totalheadmovement+abs(size-1);
-       initial=0;
-       for ( i = 0; i<index; i++)
-       {
-        printf("%d ",rq[i]);
-        totalheadmovement=totalheadmovement+abs(rq[i]-initial);
-        initial=rq[i];
-       }
-       
-       
+        printf("Sequence of request access:\n");
+        for ( i = index; i < n; i++)
+        {
+            printf("%d ",rq[i]);
+            totalheadmovement=totalheadmovement+abs(rq[i]-initial);
+            initial=rq[i];
+        }
+        totalheadmovement=totalheadmovement+abs(size-rq[i-1]);
+        totalheadmovement=totalheadmovement+abs(size);
+        initial=0;
+        for ( i = 0; i<index; i++)
+        {
+            printf("%d ",rq[i]);
+            totalheadmovement=totalheadmovement+abs(rq[i]-initial);
+            initial=rq[i];
+        }
     }
-   else
-   {
+    else
+    {
     printf("Sequence of request accsess");
-    
-         for ( i = index-1; i >=0; i--)
-       {
-        printf("%d ",rq[i]);
-        totalheadmovement=totalheadmovement+abs(rq[i]-initial);
-        initial=rq[i];
-       }
-       totalheadmovement=totalheadmovement+abs(rq[i+1]-0);
-        totalheadmovement=totalheadmovement+abs(size-1-0);
-       initial=size-1;
-         for ( i = n-1; i >=index; i--)
-       {
-        printf("%d ",rq[i]);
-        totalheadmovement=totalheadmovement+abs(rq[i]-initial);
-        initial=rq[i];
-       }
+        for ( i = index-1; i >=0; i--)
+        {
+            printf("%d ",rq[i]);
+            totalheadmovement=totalheadmovement+abs(rq[i]-initial);
+            initial=rq[i];
+        }
+        totalheadmovement=totalheadmovement+abs(rq[i+1]);
+        totalheadmovement=totalheadmovement+abs(size);
+        initial=size;
+        for ( i = n-1; i >=index; i--)
+        {
+            printf("%d ",rq[i]);
+            totalheadmovement=totalheadmovement+abs(rq[i]-initial);
+            initial=rq[i];
+        }
     }
     printf("\nTotal head movement is %d\n",totalheadmovement);
     return 0;
